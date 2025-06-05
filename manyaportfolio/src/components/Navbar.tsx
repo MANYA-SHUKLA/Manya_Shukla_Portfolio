@@ -1,4 +1,4 @@
-"use client"
+/*"use client"
 import React, { useState } from 'react'
 import styles from '@/styles/Navbar.module.css'
 import Image from 'next/image'
@@ -78,4 +78,83 @@ const Navbar = ({
     )
 }
 
-export default Navbar
+export default Navbar */
+"use client";
+import React, { useState } from 'react';
+import styles from '@/styles/Navbar.module.css';
+import Image from 'next/image';
+import signature from '@/assets/hj_signature.png';
+
+type Section = 'home' | 'about' | 'projects' | 'skills' | 'contact';
+
+interface NavbarProps {
+    homeRef: React.RefObject<HTMLDivElement | null>;
+    aboutRef: React.RefObject<HTMLDivElement | null>;
+    projectsRef: React.RefObject<HTMLDivElement | null>;
+    contactRef: React.RefObject<HTMLDivElement | null>;
+    skillsRef: React.RefObject<HTMLDivElement | null>;
+}
+
+const Navbar: React.FC<NavbarProps> = ({
+    homeRef,
+    aboutRef,
+    projectsRef,
+    contactRef,
+    skillsRef
+}) => {
+    const [navActive, setNavActive] = useState(false);
+
+    const handleButtonClick = (section: Section) => {
+        const refs: Record<Section, React.RefObject<HTMLDivElement | null> | undefined> = {
+            home: homeRef,
+            about: aboutRef,
+            projects: projectsRef,
+            skills: skillsRef,
+            contact: contactRef,
+        };
+
+        const ref = refs[section];
+        if (ref && ref.current) {
+            ref.current.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            console.warn(`Section "${section}" not found. Please ensure it exists.`);
+        }
+    };
+
+    const toggleNavbar = () => {
+        setNavActive(prev => !prev);
+    };
+
+    return (
+        <div className={styles.navouter}>
+            <div className={styles.left}>
+                <Image alt="Signature" src={signature} width={500} height={500} quality={100} className={styles.sign} />
+            </div>
+
+            <div className={`${styles.nav_toggler} ${navActive ? styles.navactive : ''}`} onClick={toggleNavbar}>
+                <span></span>
+            </div>
+
+            <div className={styles.right}>
+                {(['home', 'about', 'projects', 'skills', 'contact'] as Section[]).map(section => (
+                    <button key={section} onClick={() => handleButtonClick(section)} aria-label={`Go to ${section}`}>
+                        {section.charAt(0).toUpperCase() + section.slice(1)}
+                    </button>
+                ))}
+            </div>
+
+            {navActive && (
+                <div className={styles.right1}>
+                    {(['home', 'about', 'projects', 'skills', 'contact'] as Section[]).map(section => (
+                        <button key={section} onClick={() => handleButtonClick(section)} aria-label={`Go to ${section}`}>
+                            {section.charAt(0).toUpperCase() + section.slice(1)}
+                        </button>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default Navbar;
+
