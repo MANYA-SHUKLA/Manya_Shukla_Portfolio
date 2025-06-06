@@ -1,6 +1,5 @@
 "use client"
 import React, { useRef, useState } from 'react';
-import htmlImage from '../assets/HTML.png';
 import styles from '@/styles/SkillSection.module.css'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
