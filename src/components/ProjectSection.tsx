@@ -1,6 +1,4 @@
 "use client"
-import React, { useRef, useState } from 'react';
-
 import styles from '@/styles/ProjectSection.module.css'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
