@@ -39,22 +39,22 @@ const Projects = () => {
         >
           <SwiperSlide>
             <div className={styles.projectcard}>
-              <h1>Chromatic-Swap</h1>
+              <h1>My Portfolio</h1>
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className={styles.projectcard}>
-              <h1>Project 2</h1>
+              <h1>World Atlas</h1>
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className={styles.projectcard}>
-              <h1>Project 3</h1>
+              <h1>Manya Closet</h1>
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className={styles.projectcard}>
-              <h1>Project 4</h1>
+              <h1>Chromatic Swap</h1>
             </div>
           </SwiperSlide>
           <SwiperSlide>
